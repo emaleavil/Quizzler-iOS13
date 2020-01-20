@@ -10,11 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var trueButton: UIButton!
+    @IBOutlet weak var falseButton: UIButton!
+    
+    let questions = Questions()
+    let unFormattedQuestions = UnFormattedQuestions()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        questions.start(dictionary: unFormattedQuestions.questions())
+        questionLabel.text = questions.next()?.text
     }
 
-
+    @IBAction func onQuestionAnswered(_ sender: UIButton) {
+        let response = sender.currentTitle == "True"
+        let nextQuestion = questions.next()
+        
+        if let question = nextQuestion, question.response == response {
+            questionLabel.text = question.text
+        
+        }
+        
+    }
+    
 }
 
