@@ -12,18 +12,22 @@ class Questions {
     private var current: Int = 0
     private var selectedQuestion: Question? = nil
     
-    func start(dictionary: [String: Any]) {
+    func start(list: [[String: Any]]) -> Question {
         current = 0
+        questions = list.map { (dictionary) -> Question in
+            dictionary.toQuestion()
+        }
         selectedQuestion = questions[current]
+        return selectedQuestion!
     }
     
     func next() -> Question? {
-        if current == questions.count {
+        if current + 1 == questions.count {
             return nil
         }
         
         current += 1
-        let selectedQuestion = questions[current]
+        selectedQuestion = questions[current]
         return selectedQuestion
     }
     

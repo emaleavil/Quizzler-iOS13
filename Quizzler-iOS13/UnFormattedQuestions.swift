@@ -7,10 +7,23 @@
 //
 
 struct UnFormattedQuestions {
-    public let questions: [String : Any] = [
+    private let questions: [[String : Any]] = [
+        [
         "text": "Four + Two is equal Six",
         "response": true
+        ],
+        [
+        "text": "Is ViewController from iOsPlatform?",
+        "response": true
+        ],
+        [
+        "text": "Four + Two is equal Eight?",
+        "response": false
         ]
     
-    func questions() -> [String: Any] = questions
+    ]
+    
+    func getQuestions() -> [[String : Any]] {
+        return questions
+    }
 }

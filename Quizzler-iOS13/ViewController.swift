@@ -21,17 +21,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        questions.start(dictionary: unFormattedQuestions.questions())
-        questionLabel.text = questions.next()?.text
+        questionLabel.text = questions.start(list: unFormattedQuestions.getQuestions()).text
     }
 
     @IBAction func onQuestionAnswered(_ sender: UIButton) {
         let response = sender.currentTitle == "True"
-        let nextQuestion = questions.next()
         
-        if let question = nextQuestion, question.response == response {
-            questionLabel.text = question.text
-        
+        if questions.successfullyAnswered(selected: response) {
+            print("Success")
+            
+            guard let nextQuestion = questions.next() else {
+                questionLabel.text = "End"
+                return
+            }
+            questionLabel.text = nextQuestion.text
         }
         
     }
