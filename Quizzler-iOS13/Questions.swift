@@ -31,7 +31,7 @@ class Questions {
         return selectedQuestion
     }
     
-    func successfullyAnswered(selected: Bool) -> Bool {
-        return selected == selectedQuestion?.response ?? false
+    func successfullyAnswered(selected: String?) -> Bool {
+        return selected == selectedQuestion?.correctAnswer
     }
 }

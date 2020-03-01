@@ -12,8 +12,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var firstOption: UIButton!
+    @IBOutlet weak var secondOption: UIButton!
+    @IBOutlet weak var thirdOption: UIButton!
     
     let questions = Questions()
     let unFormattedQuestions = UnFormattedQuestions()
@@ -21,23 +22,32 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = questions.start(list: unFormattedQuestions.getQuestions()).text
+        updateScreen(questions.start(list: unFormattedQuestions.getQuestions()))
     }
 
     @IBAction func onQuestionAnswered(_ sender: UIButton) {
-        let response = sender.currentTitle == "True"
+        let response = sender.currentTitle
         
         if questions.successfullyAnswered(selected: response) {
             print("Success")
             
             guard let nextQuestion = questions.next() else {
                 questionLabel.text = "End"
+                firstOption.isHidden = true
+                secondOption.isHidden = true
+                thirdOption.isHidden = true
                 return
             }
-            questionLabel.text = nextQuestion.text
+            updateScreen(nextQuestion)
         }
         
     }
     
+    func updateScreen(_ question: Question) {
+        questionLabel.text = question.text
+        firstOption.setTitle(question.responses[0], for: .normal)
+        secondOption.setTitle(question.responses[1], for: .normal)
+        thirdOption.setTitle(question.responses[2], for: .normal)
+    }
 }
 

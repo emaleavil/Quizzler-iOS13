@@ -7,14 +7,15 @@
 //
 
 struct Question {
-    let response: Bool
+    let responses: [String]
     let text: String
+    let correctAnswer: String
 }
 
 
 extension Dictionary where Key == String, Value: Any {
     
     func toQuestion() -> Question {
-        return Question(response: self["response"] as! Bool, text: self["text"]! as! String)
+        return Question(responses: self["responses"] as! [String], text: self["text"]! as! String, correctAnswer: self["correctAnswer"] as! String)
     }
 }
