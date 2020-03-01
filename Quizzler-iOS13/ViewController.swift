@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     let questions = Questions()
     let unFormattedQuestions = UnFormattedQuestions()
+    var timer: Timer? = nil
     
     
     override func viewDidLoad() {
@@ -39,6 +40,9 @@ class ViewController: UIViewController {
                 return
             }
             updateScreen(nextQuestion)
+            buttonSelector(sender: sender, correct: true)
+        } else {
+            buttonSelector(sender: sender, correct: false)
         }
         
     }
@@ -48,6 +52,14 @@ class ViewController: UIViewController {
         firstOption.setTitle(question.responses[0], for: .normal)
         secondOption.setTitle(question.responses[1], for: .normal)
         thirdOption.setTitle(question.responses[2], for: .normal)
+    }
+    
+    func buttonSelector(sender: UIButton, correct: Bool) {
+        sender.backgroundColor = correct ? UIColor.green : UIColor.red
+        timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { _ in
+            sender.backgroundColor = UIColor.clear
+            self.timer?.invalidate()
+        })
     }
 }
 
