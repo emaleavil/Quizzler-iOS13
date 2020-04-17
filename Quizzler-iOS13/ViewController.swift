@@ -28,8 +28,9 @@ class ViewController: UIViewController {
 
     @IBAction func onQuestionAnswered(_ sender: UIButton) {
         let response = sender.currentTitle
+        let isSuccess = questions.successfullyAnswered(selected: response)
         
-        if questions.successfullyAnswered(selected: response) {
+        if  isSuccess {
             print("Success")
             
             guard let nextQuestion = questions.next() else {
@@ -40,10 +41,9 @@ class ViewController: UIViewController {
                 return
             }
             updateScreen(nextQuestion)
-            buttonSelector(sender: sender, correct: true)
-        } else {
-            buttonSelector(sender: sender, correct: false)
         }
+        
+        buttonSelector(sender: sender, correct: isSuccess)
         
     }
     
