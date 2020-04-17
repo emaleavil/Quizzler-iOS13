@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E47577524498B5F00A49CED /* QuizzlerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E47577424498B5F00A49CED /* QuizzlerContract.swift */; };
+		4E47577724498BFF00A49CED /* QuizzlerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E47577624498BFF00A49CED /* QuizzlerPresenter.swift */; };
 		4EA36F7523C48BA10059D48F /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA36F7423C48BA10059D48F /* Questions.swift */; };
 		4EA36F7723C48BB00059D48F /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA36F7623C48BB00059D48F /* Question.swift */; };
 		4EA36F7923C48DA30059D48F /* QuestionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA36F7823C48DA30059D48F /* QuestionApi.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E47577424498B5F00A49CED /* QuizzlerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzlerContract.swift; sourceTree = "<group>"; };
+		4E47577624498BFF00A49CED /* QuizzlerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzlerPresenter.swift; sourceTree = "<group>"; };
 		4EA36F7423C48BA10059D48F /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		4EA36F7623C48BB00059D48F /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4EA36F7823C48DA30059D48F /* QuestionApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionApi.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				AD4BDE4B22D878BA005BA4CC /* SceneDelegate.swift */,
 				AD4BDE5222D878BC005BA4CC /* Assets.xcassets */,
 				AD4BDE5722D878BC005BA4CC /* Info.plist */,
+				4E47577424498B5F00A49CED /* QuizzlerContract.swift */,
+				4E47577624498BFF00A49CED /* QuizzlerPresenter.swift */,
 			);
 			path = "Quizzler-iOS13";
 			sourceTree = "<group>";
@@ -183,8 +189,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E47577724498BFF00A49CED /* QuizzlerPresenter.swift in Sources */,
 				4EA36F7723C48BB00059D48F /* Question.swift in Sources */,
 				AD4BDE4E22D878BA005BA4CC /* ViewController.swift in Sources */,
+				4E47577524498B5F00A49CED /* QuizzlerContract.swift in Sources */,
 				4EA36F7523C48BA10059D48F /* Questions.swift in Sources */,
 				4EA36F7923C48DA30059D48F /* QuestionApi.swift in Sources */,
 				AD4BDE4A22D878BA005BA4CC /* AppDelegate.swift in Sources */,

@@ -31,6 +31,23 @@ class Questions {
         return selectedQuestion
     }
     
+    func responseIndex(response: String) -> Int? {
+        guard let selectedQuestion = self.selectedQuestion else {
+            return nil
+        }
+        
+        var responseIndex: Int? = nil
+        
+        for index in 0...selectedQuestion.responses.count - 1 {
+            if (selectedQuestion.responses[index] == response) {
+                responseIndex = index
+                break
+            }
+        }
+        
+        return responseIndex
+    }
+    
     func successfullyAnswered(selected: String?) -> Bool {
         return selected == selectedQuestion?.correctAnswer
     }

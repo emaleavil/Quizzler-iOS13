@@ -8,65 +8,73 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController, View {
+
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var firstOption: UIButton!
     @IBOutlet weak var secondOption: UIButton!
     @IBOutlet weak var thirdOption: UIButton!
     
-    let questions = Questions()
-    let api = QuestionApi()
-    var timer: Timer? = nil
-    
+    let presenter = QuizzlerPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateScreen(questions.start(list: api.getQuestions()))
-        progressBar.progress = questions.progress()
+        presenter.view = self 
+        presenter.loadGame()
     }
 
     @IBAction func onQuestionAnswered(_ sender: UIButton) {
-        let response = sender.currentTitle
-        let isSuccess = questions.successfullyAnswered(selected: response)
-        
-        if  isSuccess {
-            print("Success")
-            
-            guard let nextQuestion = questions.next() else {
-                updateScreenEndGame()
-                return
-            }
-            updateScreen(nextQuestion)
-        }
-        
-        buttonSelector(sender: sender, correct: isSuccess)
-        
+        presenter.answerQuestion(response: sender.currentTitle!)
     }
     
-    func updateScreen(_ question: Question) {
-        questionLabel.text = question.text
-        firstOption.setTitle(question.responses[0], for: .normal)
-        secondOption.setTitle(question.responses[1], for: .normal)
-        thirdOption.setTitle(question.responses[2], for: .normal)
-        progressBar.progress = questions.progress()
+    func showProgress(progress: Float) {
+        progressBar.progress = progress
     }
     
-    func updateScreenEndGame() {
+    func updateQuestionLabel(text: String) {
+        questionLabel.text = text
+    }
+    
+    func gameEnded() {
         questionLabel.text = "End"
         firstOption.isHidden = true
         secondOption.isHidden = true
         thirdOption.isHidden = true
-        progressBar.progress = questions.progress()
     }
     
-    func buttonSelector(sender: UIButton, correct: Bool) {
-        sender.backgroundColor = correct ? UIColor.green : UIColor.red
-        timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { _ in
-            sender.backgroundColor = UIColor.clear
-            self.timer?.invalidate()
-        })
+    func showOptions(optionOne: String, optionTwo: String, optionThree: String) {
+        firstOption.setTitle(optionOne, for: .normal)
+        secondOption.setTitle(optionTwo, for: .normal)
+        thirdOption.setTitle(optionThree, for: .normal)
+    }
+    
+    func showErrorBackground(position: Int) {
+        setBackground(position: position, color: UIColor.red)
+    }
+    
+    func showCorrectBackground(position: Int) {
+        setBackground(position: position, color: UIColor.green)
+    }
+    
+    func clearBackground(position: Int) {
+        setBackground(position: position, color: UIColor.clear)
+    }
+    
+    func setBackground(position:Int, color: UIColor) {
+        switch(position) {
+            case 0:
+                firstOption.backgroundColor = color
+            break
+            case 1:
+                secondOption.backgroundColor = color
+            break
+            case 2:
+                thirdOption.backgroundColor = color
+            break
+            default:
+            break
+        }
     }
 }
 
