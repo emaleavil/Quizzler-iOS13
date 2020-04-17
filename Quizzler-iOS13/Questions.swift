@@ -34,4 +34,8 @@ class Questions {
     func successfullyAnswered(selected: String?) -> Bool {
         return selected == selectedQuestion?.correctAnswer
     }
+    
+    func progress() -> Float {
+        return Float(current) / Float(questions.count)
+    }
 }

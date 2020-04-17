@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateScreen(questions.start(list: unFormattedQuestions.getQuestions()))
+        progressBar.progress = questions.progress()
     }
 
     @IBAction func onQuestionAnswered(_ sender: UIButton) {
@@ -34,10 +35,7 @@ class ViewController: UIViewController {
             print("Success")
             
             guard let nextQuestion = questions.next() else {
-                questionLabel.text = "End"
-                firstOption.isHidden = true
-                secondOption.isHidden = true
-                thirdOption.isHidden = true
+                updateScreenEndGame()
                 return
             }
             updateScreen(nextQuestion)
@@ -52,6 +50,15 @@ class ViewController: UIViewController {
         firstOption.setTitle(question.responses[0], for: .normal)
         secondOption.setTitle(question.responses[1], for: .normal)
         thirdOption.setTitle(question.responses[2], for: .normal)
+        progressBar.progress = questions.progress()
+    }
+    
+    func updateScreenEndGame() {
+        questionLabel.text = "End"
+        firstOption.isHidden = true
+        secondOption.isHidden = true
+        thirdOption.isHidden = true
+        progressBar.progress = 1.0
     }
     
     func buttonSelector(sender: UIButton, correct: Bool) {
