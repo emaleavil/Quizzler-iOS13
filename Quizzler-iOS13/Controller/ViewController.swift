@@ -17,13 +17,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var thirdOption: UIButton!
     
     let questions = Questions()
-    let unFormattedQuestions = UnFormattedQuestions()
+    let api = QuestionApi()
     var timer: Timer? = nil
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateScreen(questions.start(list: unFormattedQuestions.getQuestions()))
+        updateScreen(questions.start(list: api.getQuestions()))
         progressBar.progress = questions.progress()
     }
 

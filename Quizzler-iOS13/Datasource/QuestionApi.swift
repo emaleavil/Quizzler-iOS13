@@ -6,7 +6,7 @@
 //  Copyright © 2020 The App Brewery. All rights reserved.
 //
 
-struct UnFormattedQuestions {
+struct QuestionApi {
     private let questions: [[String : Any]] = [
         [
         "text": "Which is the largest organ in the human body?",
