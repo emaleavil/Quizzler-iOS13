@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         firstOption.isHidden = true
         secondOption.isHidden = true
         thirdOption.isHidden = true
-        progressBar.progress = 1.0
+        progressBar.progress = questions.progress()
     }
     
     func buttonSelector(sender: UIButton, correct: Bool) {

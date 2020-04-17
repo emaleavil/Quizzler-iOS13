@@ -36,6 +36,6 @@ class Questions {
     }
     
     func progress() -> Float {
-        return Float(current) / Float(questions.count)
+        return Float(current + 1) / Float(questions.count)
     }
 }
