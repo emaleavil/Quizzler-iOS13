@@ -35,7 +35,5 @@ class Questions {
         return selected == selectedQuestion?.correctAnswer
     }
     
-    func progress() -> Float {
-        return Float(current + 1) / Float(questions.count)
-    }
+    f 
 }
