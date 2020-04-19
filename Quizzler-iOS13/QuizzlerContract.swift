@@ -21,4 +21,5 @@ protocol View {
     func showErrorBackground(position: Int)
     func showCorrectBackground(position: Int)
     func clearBackground(position: Int)
+    func showScore(score: Int)
 }

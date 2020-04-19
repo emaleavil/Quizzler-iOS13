@@ -15,6 +15,7 @@ class ViewController: UIViewController, View {
     @IBOutlet weak var firstOption: UIButton!
     @IBOutlet weak var secondOption: UIButton!
     @IBOutlet weak var thirdOption: UIButton!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     let presenter = QuizzlerPresenter()
     
@@ -75,6 +76,10 @@ class ViewController: UIViewController, View {
             default:
             break
         }
+    }
+    
+    func showScore(score: Int) {
+        scoreLabel.text = "Score: \(score)"
     }
 }
 

@@ -13,6 +13,7 @@ class QuizzlerPresenter: Presenter {
     let questions = Questions()
     let api = QuestionApi()
     var timer: Timer? = nil
+    var score: Int = 0
     
     var view: View? = nil
     
@@ -20,6 +21,7 @@ class QuizzlerPresenter: Presenter {
         let question = questions.start(list: api.getQuestions())
         showQuestion(question: question)
         view?.showProgress(progress: questions.progress())
+        view?.showScore(score: score)
     }
     
     func answerQuestion(response: String) {
@@ -57,10 +59,14 @@ class QuizzlerPresenter: Presenter {
         }
         
         if correct {
+            score += 10
             view?.showCorrectBackground(position: index)
         } else {
+            score += score == 0 ? 0 : -2
             view?.showErrorBackground(position: index)
         }
+        
+        view?.showScore(score: score)
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { _ in
             self.view?.clearBackground(position: index)
